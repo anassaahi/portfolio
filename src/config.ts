@@ -1,91 +1,71 @@
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
-  title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
+  name: "Anas Faiz",
+  title: "Computer Science Student & Software Developer",
+  description: "Portfolio website of Anas Faiz",
   accentColor: "#1d4ed8",
   social: {
-    email: "your-email@example.com",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    email: "anasfaizsahi6@gmail.com",
+    linkedin: "https://linkedin.com/in/anas-faiz-4289aa270",
+    twitter: "",
+    github: "https://github.com/anassaahi",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
+    "I am a Computer Science student at the University of Engineering and Technology Lahore. My expertise spans software development, database systems, cybersecurity, and artificial intelligence. I enjoy architecting autonomous multi-agent systems, engineering high-performance databases, and conducting forensic analysis on critical infrastructure.",
+  skills: [
+    "C++", "Python", "TypeScript", "JavaScript", "Dart", "SQL", "C", "Java", 
+    "Next.js", "React", "Node.js", "Flutter", "Firebase", "YOLOv8", "PyTorch", "OpenCV", "CUDA", 
+    "Git", "Linux", "MCP", "Wireshark", "Nmap", "LaTeX", "Android Studio", "Docker"
+  ],
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "Research Intro Generator (Refiner Agent)",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Architected an autonomous multi-agent pipeline in Next.js that converts drafts into IEEE-formatted research papers, utilizing a custom Model Context Protocol (MCP), self-healing JSON parsers, and exponential-backoff logic to ensure robust Gemini API usage.",
+      link: "https://github.com/M-Ibraheem0/SPM-Project",
+      skills: ["Next.js 14", "TypeScript", "Gemini API", "MCP"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "Bicycle Marketplace Application",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Delivered a cross-platform marketplace app in Flutter with a responsive UI and optimized mobile UX for listing and discovery. Integrated serverless backend using Firebase for secure auth, user profiles, and multi-image uploads.",
+      link: "https://github.com/anassaahi/Bicycle-Marketplace",
+      skills: ["Flutter", "Dart", "Firebase", "Cloud Firestore"],
     },
     {
-      name: "ExtensionKit",
+      name: "Custom SQL Database Engine",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Engineered a high-performance relational DBMS in C++ with B+ Tree indexing, 4KB paged storage and mmap-based I/O optimizations. Implemented ACID guarantees and concurrency control via WAL, 2PL, and MVCC.",
+      link: "https://github.com/anassaahi/SQL-Database-engine",
+      skills: ["C++", "React", "Node.js", "B+ Tree"],
     },
+    {
+      name: "Real-Time PPE Compliance Detection System",
+      description:
+        "Designed and trained a real-time PPE detector using YOLOv8, achieving 77% mAP@50 on a multi-class safety dataset. Built an end-to-end training pipeline with CUDA-accelerated PyTorch training optimized for low-VRAM environments.",
+      link: "https://github.com/anassaahi/Personal-ppe-data-training",
+      skills: ["Python", "YOLOv8", "PyTorch", "CUDA", "OpenCV"],
+    }
   ],
   experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
+      company: "Project Basis",
+      title: "Cybersecurity Analyst",
+      dateRange: "Recent",
       bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
-      ],
-    },
-    {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
-      bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
-      ],
-    },
-    {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
-      bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "Conducted forensic analysis of a multi-vector APT attack on London's Traffic Light Management System, investigating phishing, SQL injection, and SSH exploitation chains.",
+        "Also did digital forensic and Cybersecurity analysis on Image files to extract the information about a legal case based scenario.",
+        "Authored a comprehensive technical report outlining mitigation strategies for operational and economic impacts, including defenses against deepfake-based disinformation.",
       ],
     },
   ],
   education: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      school: "University of Engineering and Technology Lahore",
+      degree: "BS in Computer Science",
+      dateRange: "2023 - 2027",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
-      ],
-    },
-    {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
-      achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
+        "Cumulative GPA: 3.853",
+        "Located in Lahore, Pakistan",
       ],
     },
   ],
