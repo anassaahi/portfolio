@@ -64,7 +64,7 @@ export const siteConfig = {
       degree: "BS in Computer Science",
       dateRange: "2023 - 2027",
       achievements: [
-        "Cumulative GPA: 3.853",
+        "GPA: 3.853",
         "Located in Lahore, Pakistan",
       ],
     },
