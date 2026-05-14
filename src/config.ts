@@ -1,7 +1,8 @@
 // 1. Import the images at the top
-import cricketImg1 from "./src/assets/sports/cricket.jpg";
-import cricketImg2 from "./src/assets/sports/cricket2.jpg";
-import badmintonImg from "./src/assets/sports/badminton.jpg";
+// 1. Import the images at the top (corrected paths)
+import cricketImg1 from "./assets/sports/cricket.jpg";
+import cricketImg2 from "./assets/sports/cricket2.jpg";
+import badmintonImg from "./assets/sports/badminton.jpg";
 
 export const siteConfig = {
   name: "Anas Faiz",
