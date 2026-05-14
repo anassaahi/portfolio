@@ -1,3 +1,8 @@
+// 1. Import the images at the top
+import cricketImg1 from "./src/assets/sports/cricket.jpg";
+import cricketImg2 from "./src/assets/sports/cricket2.jpg";
+import badmintonImg from "./src/assets/sports/badminton.jpg";
+
 export const siteConfig = {
   name: "Anas Faiz",
   title: "Computer Science Student & Software Developer",
@@ -69,7 +74,6 @@ export const siteConfig = {
       ],
     },
   ],
-  // ... your previous config code (education, etc) ...
 
   // Sports & Achievements
   sports: [
@@ -77,19 +81,20 @@ export const siteConfig = {
       title: "University Cricket Team Representation",
       category: "Cricket",
       description: "Led the team to victory in Computer Science department cricket tournament.",
-      image: "/public/sports/cricket.jpg", // We will set up this folder next
+      // 2. Reference the imported variables here
+      image: cricketImg1, 
     },
     {
       title: "University cricket team",
       category: "Cricket",
       description: "Part of the university cricket team, contributing to team success.",
-      image: "/public/sports/cricket2.jpg",
+      image: cricketImg2,
     },
     {
       title: "Competitive Badminton",
       category: "Badminton",
       description: "Active player in both indoor and outdoor badminton settings.",
-      image: "/public/sports/badminton.jpg",
+      image: badmintonImg,
     }
   ],
 };
