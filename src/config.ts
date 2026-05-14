@@ -69,4 +69,27 @@ export const siteConfig = {
       ],
     },
   ],
+  // ... your previous config code (education, etc) ...
+
+  // Sports & Achievements
+  sports: [
+    {
+      title: "University Cricket Team Representation",
+      category: "Cricket",
+      description: "Led the team to victory in Computer Science department cricket tournament.",
+      image: "/public/sports/cricket.jpg", // We will set up this folder next
+    },
+    {
+      title: "University cricket team",
+      category: "Cricket",
+      description: "Part of the university cricket team, contributing to team success.",
+      image: "/public/sports/cricket2.jpg",
+    },
+    {
+      title: "Competitive Badminton",
+      category: "Badminton",
+      description: "Active player in both indoor and outdoor badminton settings.",
+      image: "/public/sports/badminton.jpg",
+    }
+  ],
 };
