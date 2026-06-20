@@ -8,7 +8,7 @@ export const siteConfig = {
   name: "Anas Faiz",
   title: "Computer Science Student & Software Developer",
   description: "Portfolio website of Anas Faiz",
-  accentColor: "#1d4ed8",
+  accentColor: "#f0ede8",
   social: {
     email: "anasfaizsahi6@gmail.com",
     linkedin: "https://linkedin.com/in/anas-faiz-4289aa270",
@@ -82,7 +82,6 @@ export const siteConfig = {
       title: "University Cricket Team Representation",
       category: "Cricket",
       description: "Led the team to victory in Computer Science department cricket tournament.",
-      // 2. Reference the imported variables here
       image: cricketImg1, 
     },
     {
@@ -98,4 +97,63 @@ export const siteConfig = {
       image: badmintonImg,
     }
   ],
+
+  // ─── Art Galleries ───────────────────────────────────────────────
+  // To add MORE images later:
+  //   1. Drop your files into public/art/photography/ or public/art/sketches/
+  //   2. Add a new entry below with orientation: "portrait" or "landscape"
+  // ─────────────────────────────────────────────────────────────────
+  art: {
+    photography: [
+      { src: "/portfolio/art/photography/PXL_20251227_182403490.NIGHT~2.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20251228_152904513.NIGHT.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20251228_191132439.NIGHT.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20251229_071705875.MP.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260113_173319646.LONG_EXPOSURE-01.COVER~2.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260115_153519101.NIGHT.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260115_153730380.NIGHT.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260115_153840836.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260121_095900936~2.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260123_122440686.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260123_212158944.NIGHT.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260125_122621308~3.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260129_113124203.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260130_131840091.PANO.webp", orientation: "landscape" },
+      { src: "/portfolio/art/photography/PXL_20260214_145018560.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260217_091720154~2.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260222_101846535~2.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260227_112806149~2.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260320_124906748.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260323_131919463.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260327_132212105.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260401_103002073.LONG_EXPOSURE-01.COVER~2.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260403_130548448.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260426_132307133.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260428_164357007.NIGHT.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260521_153902382.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260525_153910648~2.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260527_170447975.NIGHT.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260602_051336361.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/PXL_20260617_070127289.webp", orientation: "landscape" },
+      { src: "/portfolio/art/photography/original_f34b489b-03c1-4a2e-918f-cd3922b615c8_PXL_20260129_085240839.webp", orientation: "portrait" },
+    ] as Array<{ src: string; orientation: "portrait" | "landscape"; caption?: string }>,
+
+    sketches: [
+      { src: "/portfolio/art/sketches/20260620_143928886.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_144512629.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_144611363.webp", orientation: "landscape" },
+      { src: "/portfolio/art/sketches/20260620_144641140.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_144655859.webp", orientation: "landscape" },
+      { src: "/portfolio/art/sketches/20260620_144722608.webp", orientation: "landscape" },
+      { src: "/portfolio/art/sketches/20260620_144743283.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_144816131.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_144827233.webp", orientation: "landscape" },
+      { src: "/portfolio/art/sketches/20260620_144840935.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_145130006.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_145150079.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_145522273.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/20260620_145602500.webp", orientation: "landscape" },
+      { src: "/portfolio/art/sketches/20260620_145705524.webp", orientation: "portrait" },
+    ] as Array<{ src: string; orientation: "portrait" | "landscape"; caption?: string }>,
+  },
 };

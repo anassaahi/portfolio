@@ -2,39 +2,47 @@
 import { siteConfig } from "../config";
 ---
 
-<section id="about" class="p-8 sm:p-12 md:p-16 lg:p-24">
-  <div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-      <div class="lg:col-span-4">
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
-        >
-          About Me
-        </h2>
-        <div
-          class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
-        >
-        </div>
-      </div>
+<section id="about" class="relative py-24 md:py-32 px-8 sm:px-12 md:px-24 border-t border-[var(--border)]">
+  <!-- Section label -->
+  <div class="mb-16">
+    <span class="font-mono text-sm tracking-widest uppercase text-[var(--text-muted)]">01 — About</span>
+    <div class="mt-4 w-8 h-px bg-[var(--text-muted)]"></div>
+  </div>
 
-      <div class="lg:col-span-8 space-y-8">
-        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
-          {siteConfig.aboutMe}
-        </p>
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
 
-        <div class="pt-4">
-          <div class="flex flex-wrap gap-3">
-            {
-              siteConfig.skills.map((skill) => (
-                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
-                  {skill}
-                </span>
-              ))
-            }
-          </div>
+    <!-- Heading column -->
+    <div class="lg:col-span-4">
+      <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-none tracking-tight text-[var(--text-primary)]">
+        About<br/>
+        <span class="about-outline">Me.</span>
+      </h2>
+    </div>
+
+    <!-- Content column -->
+    <div class="lg:col-span-8 space-y-10">
+      <p class="text-xl sm:text-2xl leading-relaxed text-[var(--text-secondary)] font-light">
+        {siteConfig.aboutMe}
+      </p>
+
+      <!-- Skills -->
+      <div>
+        <span class="font-mono text-sm tracking-widest uppercase text-[var(--text-muted)] block mb-5">— Stack & Tools</span>
+        <div class="flex flex-wrap gap-2.5">
+          {siteConfig.skills.map((skill) => (
+            <span class="skill-tag px-4 py-2 border border-[var(--border-light)] text-[var(--text-secondary)] text-base font-mono tracking-wide hover:border-[var(--text-primary)] hover:text-[var(--text-primary)] transition-all duration-200 cursor-default">
+              {skill}
+            </span>
+          ))}
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .about-outline {
+    -webkit-text-stroke: 1.5px var(--text-primary);
+    color: transparent;
+  }
+</style>

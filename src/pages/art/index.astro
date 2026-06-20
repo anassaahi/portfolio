@@ -1,0 +1,408 @@
+---
+import { siteConfig } from "../../config";
+import "../../styles/global.css";
+
+const photography = siteConfig.art.photography;
+const sketches = siteConfig.art.sketches;
+const sports = siteConfig.sports ?? [];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Art, Photography & Sketches by Anas Faiz" />
+    <meta name="theme-color" content="#080808" />
+    <title>Art & Life — Anas Faiz</title>
+  </head>
+  <body>
+
+    <!-- ── Header ── -->
+    <header id="art-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+      <nav class="mx-auto max-w-7xl px-8 py-5 flex items-center justify-between">
+        <a href="/portfolio/" class="font-mono text-sm tracking-widest uppercase text-[var(--text-primary)] opacity-70 hover:opacity-100 transition-opacity duration-300">
+          ← Back
+        </a>
+        <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">Art & Life</span>
+        <div class="flex gap-6">
+          <a href="#photography" class="font-mono text-xs tracking-widest uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300">Photos</a>
+          <a href="#sketches" class="font-mono text-xs tracking-widest uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300">Sketches</a>
+          <a href="#sports" class="font-mono text-xs tracking-widest uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300">Sports</a>
+        </div>
+      </nav>
+    </header>
+
+    <script>
+      const header = document.getElementById('art-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          header?.classList.add('art-header-scrolled');
+        } else {
+          header?.classList.remove('art-header-scrolled');
+        }
+      });
+    </script>
+
+    <main class="pt-24">
+
+      <!-- ── Hero banner ── -->
+      <div class="border-b border-[var(--border)] px-8 sm:px-12 md:px-24 pb-20 pt-12 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] block mb-4">Anas Faiz — Visual Work</span>
+            <h1 class="text-6xl sm:text-7xl md:text-8xl font-bold leading-none tracking-tight text-[var(--text-primary)]">
+              Art &<br/><span class="art-page-outline">Life.</span>
+            </h1>
+          </div>
+          <p class="max-w-sm text-base text-[var(--text-secondary)] font-light leading-relaxed md:text-right">
+            Photography, sketching, and sport —<br/>
+            the quieter side of how I see the world.
+          </p>
+        </div>
+        <div class="mt-10 flex items-center gap-10">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">Photographs</span>
+          </div>
+          <div class="w-px h-8 bg-[var(--border)]"></div>
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">Sketches</span>
+          </div>
+          <div class="w-px h-8 bg-[var(--border)]"></div>
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">Sports</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Photography ── -->
+      {photography.length > 0 && (
+        <section id="photography" class="py-20 md:py-28 px-8 sm:px-12 md:px-24 border-b border-[var(--border)]">
+          <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-6 mb-14">
+              <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">Photography</span>
+              <div class="flex-1 h-px bg-[var(--border)]"></div>
+            </div>
+            <div class="orientation-grid">
+              {photography.map((item, i) => (
+                <div
+                  class={`art-cell group cursor-zoom-in ${item.orientation === 'landscape' ? 'art-cell--landscape' : 'art-cell--portrait'}`}
+                  data-src={item.src}
+                  data-index={i}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.caption ?? `Photograph ${i + 1}`}
+                    class="art-img"
+                    loading={i < 6 ? "eager" : "lazy"}
+                  />
+                  {item.caption && (
+                    <div class="art-caption">
+                      <p class="font-mono text-xs text-[var(--text-primary)] tracking-wider">{item.caption}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- ── Sketches ── -->
+      {sketches.length > 0 && (
+        <section id="sketches" class="py-20 md:py-28 px-8 sm:px-12 md:px-24 border-b border-[var(--border)] bg-[var(--bg-surface)]">
+          <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-6 mb-14">
+              <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">Sketches</span>
+              <div class="flex-1 h-px bg-[var(--border)]"></div>
+            </div>
+            <div class="orientation-grid">
+              {sketches.map((item, i) => (
+                <div
+                  class={`art-cell group cursor-zoom-in ${item.orientation === 'landscape' ? 'art-cell--landscape' : 'art-cell--portrait'}`}
+                  data-src={item.src}
+                  data-index={i + photography.length}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.caption ?? `Sketch ${i + 1}`}
+                    class="art-img"
+                    loading="lazy"
+                  />
+                  {item.caption && (
+                    <div class="art-caption">
+                      <p class="font-mono text-xs text-[var(--text-primary)] tracking-wider">{item.caption}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- ── Sports ── -->
+      {sports.length > 0 && (
+        <section id="sports" class="py-20 md:py-28 px-8 sm:px-12 md:px-24">
+          <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-6 mb-14">
+              <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">Sports & Athletics</span>
+              <div class="flex-1 h-px bg-[var(--border)]"></div>
+            </div>
+            <div class="sports-bento">
+              {sports.map((item, index) => (
+                <div class={`sports-cell group relative overflow-hidden ${index === 0 ? 'sports-cell--large' : 'sports-cell--small'}`}>
+                  <img
+                    src={(item.image as any).src ?? item.image}
+                    alt={item.title}
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)]/90 via-transparent to-transparent"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                    <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] block mb-2">
+                      {item.category}
+                    </span>
+                    <h3 class="text-lg sm:text-xl font-semibold text-[var(--text-primary)]">
+                      {item.title}
+                    </h3>
+                    <div class="overflow-hidden max-h-0 group-hover:max-h-20 transition-all duration-500">
+                      <p class="text-sm text-[var(--text-secondary)] mt-2 font-light">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- Footer -->
+      <footer class="border-t border-[var(--border)] px-8 sm:px-12 md:px-24 py-10 max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <a href="/portfolio/" class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors border-b border-transparent hover:border-[var(--text-primary)] pb-0.5">
+          ← Back to Portfolio
+        </a>
+        <p class="font-mono text-xs text-[var(--text-muted)] tracking-widest">
+          © {new Date().getFullYear()} Anas Faiz
+        </p>
+      </footer>
+    </main>
+
+    <!-- ── Lightbox ── -->
+    <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button id="lb-close" class="lb-close" aria-label="Close">&times;</button>
+      <button id="lb-prev" class="lb-nav lb-prev" aria-label="Previous">&#8592;</button>
+      <button id="lb-next" class="lb-nav lb-next" aria-label="Next">&#8594;</button>
+      <div class="lb-content">
+        <img id="lb-img" src="" alt="" class="lb-img" />
+      </div>
+    </div>
+
+    <script>
+      // Lightbox logic
+      const cells = Array.from(document.querySelectorAll('.art-cell'));
+      const lightbox = document.getElementById('lightbox')!;
+      const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+      let current = 0;
+
+      function open(idx: number) {
+        current = idx;
+        const cell = cells[idx];
+        const src = cell.getAttribute('data-src') || '';
+        lbImg.src = src;
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        lightbox.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      function next() { open((current + 1) % cells.length); }
+      function prev() { open((current - 1 + cells.length) % cells.length); }
+
+      cells.forEach((cell, i) => cell.addEventListener('click', () => open(i)));
+      document.getElementById('lb-close')!.addEventListener('click', close);
+      document.getElementById('lb-next')!.addEventListener('click', next);
+      document.getElementById('lb-prev')!.addEventListener('click', prev);
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+      });
+    </script>
+
+  </body>
+</html>
+
+<style>
+  .art-page-outline {
+    -webkit-text-stroke: 1.5px var(--text-primary);
+    color: transparent;
+  }
+
+  /* Header scroll state */
+  .art-header-scrolled {
+    background-color: rgba(8, 8, 8, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Orientation-aware grid ── */
+  .orientation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+
+  .art-cell {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-surface);
+  }
+
+  /* Portrait: span 1 col, auto height from content */
+  .art-cell--portrait {
+    grid-column: span 1;
+  }
+
+  /* Landscape: span 2 cols */
+  .art-cell--landscape {
+    grid-column: span 2;
+  }
+
+  /* The image fills the cell naturally at its own aspect ratio */
+  .art-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.6s ease;
+  }
+
+  .art-cell:hover .art-img {
+    transform: scale(1.02);
+  }
+
+  .art-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 100%);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .art-cell:hover .art-caption {
+    transform: translateY(0);
+  }
+
+  /* Responsive: on small screens, landscape still spans 2 but minmax tightens */
+  @media (max-width: 640px) {
+    .orientation-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .art-cell--landscape {
+      grid-column: span 2;
+    }
+  }
+
+  /* ── Sports bento ── */
+  .sports-bento {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .sports-bento {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 320px 280px;
+    }
+    .sports-cell--large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+
+  .sports-cell {
+    min-height: 220px;
+    background: var(--bg-surface);
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.hidden {
+    display: none;
+  }
+
+  .lb-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lb-img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+  }
+
+  .lb-close {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    font-size: 32px;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    z-index: 1001;
+    font-family: sans-serif;
+  }
+  .lb-close:hover { color: var(--text-primary); }
+
+  .lb-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+    font-size: 22px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.2s;
+  }
+  .lb-nav:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+  }
+  .lb-prev { left: 24px; }
+  .lb-next { right: 24px; }
+</style>

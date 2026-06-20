@@ -3,102 +3,90 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 ---
 
-{
-  hasProjects && (
-    <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Projects
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+{hasProjects && (
+  <section id="projects" class="relative py-24 md:py-32 px-8 sm:px-12 md:px-24 border-t border-[var(--border)] bg-[var(--bg-surface)]">
 
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.projects.map((project, index) => {
-                const Component = project.link ? "a" : "div";
-                const linkProps = project.link
-                  ? {
-                      href: project.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    }
-                  : {};
+    <!-- Section label -->
+    <div class="mb-16 max-w-7xl mx-auto">
+      <span class="font-mono text-sm tracking-widest uppercase text-[var(--text-muted)]">02 — Projects</span>
+      <div class="mt-4 w-8 h-px bg-[var(--text-muted)]"></div>
+    </div>
 
-                return (
-                  <div class="group relative">
-                    <Component
-                      {...linkProps}
-                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
-                        project.link
-                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
-                          : ""
-                      }`}
-                    >
-                      {project.link && (
-                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
-                          <svg
-                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M7 17L17 7M17 7H7M17 7V17"
-                            />
-                          </svg>
-                        </div>
-                      )}
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
 
-                      <div class="space-y-4">
-                        <div>
-                          <span
-                            class="text-sm font-mono"
-                            style={{ color: siteConfig.accentColor }}
-                          >
-                            0{index + 1}
-                          </span>
-                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-                            {project.name}
-                          </h3>
-                        </div>
-
-                        <p
-                          class={`text-base sm:text-lg text-gray-600 leading-relaxed ${project.link ? "pr-12 sm:pr-14 md:pr-16" : ""}`}
-                        >
-                          {project.description}
-                        </p>
-
-                        {project.skills && project.skills.length > 0 && (
-                          <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
-                            {project.skills.map((skill) => (
-                              <span
-                                class={`px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                                  project.link ? "group-hover:bg-gray-800" : ""
-                                }`}
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </Component>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+      <!-- Heading -->
+      <div class="lg:col-span-4">
+        <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-none tracking-tight text-[var(--text-primary)]">
+          Selected<br/>
+          <span class="projects-outline">Work.</span>
+        </h2>
       </div>
-    </section>
-  )
-}
+
+      <!-- Project cards -->
+      <div class="lg:col-span-8 space-y-6">
+        {siteConfig.projects.map((project, index) => {
+          const Tag = project.link ? "a" : "div";
+          const linkProps = project.link
+            ? { href: project.link, target: "_blank", rel: "noopener noreferrer" }
+            : {};
+
+          return (
+            <div class="group project-card relative">
+              <Tag
+                {...linkProps}
+                class={`block relative p-6 md:p-8 border border-[var(--border)] bg-[var(--bg-primary)] transition-all duration-400 ${
+                  project.link ? "hover:border-[var(--border-light)] hover:bg-[var(--bg-surface-2)]" : ""
+                }`}
+              >
+                <!-- Index + Arrow -->
+                <div class="flex justify-between items-start mb-6">
+                  <span class="font-mono text-xs text-[var(--text-muted)] tracking-widest">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {project.link && (
+                    <div class="w-8 h-8 border border-[var(--border-light)] flex items-center justify-center group-hover:border-[var(--text-primary)] group-hover:bg-[var(--text-primary)] transition-all duration-300">
+                      <svg class="w-3.5 h-3.5 text-[var(--text-muted)] group-hover:text-[var(--bg-primary)] transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+
+                <!-- Title -->
+                <h3 class="text-xl sm:text-2xl font-semibold text-[var(--text-primary)] mb-3 leading-tight">
+                  {project.name}
+                </h3>
+
+                <!-- Description -->
+                <p class={`text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-light ${project.link ? "pr-0" : ""}`}>
+                  {project.description}
+                </p>
+
+                <!-- Skills -->
+                {project.skills && project.skills.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mt-5">
+                    {project.skills.map((skill) => (
+                      <span class="font-mono text-xs sm:text-sm px-2.5 py-1.5 border border-[var(--border)] text-[var(--text-muted)] tracking-wide">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <!-- Bottom border reveal on hover -->
+                <div class="absolute bottom-0 left-0 w-0 h-px bg-[var(--text-primary)] group-hover:w-full transition-all duration-500"></div>
+              </Tag>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .projects-outline {
+    -webkit-text-stroke: 1.5px var(--text-primary);
+    color: transparent;
+  }
+</style>

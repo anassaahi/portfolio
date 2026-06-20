@@ -3,58 +3,58 @@ import { siteConfig } from "../config";
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
-{
-  hasEducation && (
-    <section id="education" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Education
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+{hasEducation && (
+  <section id="education" class="relative py-24 md:py-32 px-8 sm:px-12 md:px-24 border-t border-[var(--border)]">
 
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.education.map((edu) => (
-                <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                    <div>
-                      <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
-                        {edu.degree}
-                      </h3>
-                      <p
-                        class="text-base sm:text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
-                      >
-                        {edu.school}
-                      </p>
-                    </div>
-                    <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
-                      {edu.dateRange}
-                    </span>
-                  </div>
+    <!-- Section label -->
+    <div class="mb-16 max-w-7xl mx-auto">
+      <span class="font-mono text-sm tracking-widest uppercase text-[var(--text-muted)]">05 — Education</span>
+      <div class="mt-4 w-8 h-px bg-[var(--text-muted)]"></div>
+    </div>
 
-                  <ul class="space-y-2">
-                    {edu.achievements.map((achievement) => (
-                      <li class="flex items-start">
-                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                        <span class="text-sm sm:text-base text-gray-600">
-                          {achievement}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+
+      <div class="lg:col-span-4">
+        <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-none tracking-tight text-[var(--text-primary)]">
+          Edu<span class="edu-outline">cation.</span>
+        </h2>
       </div>
-    </section>
-  )
-}
+
+      <div class="lg:col-span-8 space-y-6">
+        {siteConfig.education.map((edu) => (
+          <div class="group relative p-6 md:p-8 border border-[var(--border)] bg-[var(--bg-surface)] hover:border-[var(--border-light)] transition-all duration-300">
+            <div class="absolute left-0 top-0 bottom-0 w-px bg-[var(--border)] group-hover:bg-[var(--text-primary)] transition-colors duration-300"></div>
+
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-5 gap-2">
+              <div>
+                <h3 class="text-lg sm:text-xl font-semibold text-[var(--text-primary)]">{edu.degree}</h3>
+                <p class="text-base text-[var(--text-secondary)] font-light mt-0.5">{edu.school}</p>
+              </div>
+              <span class="font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase whitespace-nowrap mt-1 sm:mt-0">
+                {edu.dateRange}
+              </span>
+            </div>
+
+            <ul class="space-y-3">
+              {edu.achievements.map((achievement) => (
+                <li class="flex items-start gap-4">
+                  <span class="font-mono text-[var(--text-muted)] mt-1 text-xs flex-shrink-0">—</span>
+                  <span class="text-base sm:text-lg text-[var(--text-secondary)] font-light">{achievement}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="absolute bottom-0 left-0 w-0 h-px bg-[var(--text-primary)] group-hover:w-full transition-all duration-500"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .edu-outline {
+    -webkit-text-stroke: 1px var(--text-primary);
+    color: transparent;
+  }
+</style>
