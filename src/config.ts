@@ -147,7 +147,6 @@ export const siteConfig = {
       { src: "/portfolio/art/sketches/20260620_144722608.webp", orientation: "landscape" },
       { src: "/portfolio/art/sketches/20260620_144743283.webp", orientation: "portrait" },
       { src: "/portfolio/art/sketches/20260620_144816131.webp", orientation: "portrait" },
-      { src: "/portfolio/art/sketches/20260620_144827233.webp", orientation: "landscape" },
       { src: "/portfolio/art/sketches/20260620_144840935.webp", orientation: "portrait" },
       { src: "/portfolio/art/sketches/20260620_145130006.webp", orientation: "portrait" },
       { src: "/portfolio/art/sketches/20260620_145150079.webp", orientation: "portrait" },
