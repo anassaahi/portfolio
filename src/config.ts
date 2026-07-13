@@ -105,6 +105,13 @@ export const siteConfig = {
   // ─────────────────────────────────────────────────────────────────
   art: {
     photography: [
+      { src: "/portfolio/art/photography/yellow.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/pink.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/hallway.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/hallway1.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/mosque.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/basketball.webp", orientation: "portrait" },
+      { src: "/portfolio/art/photography/desert.webp", orientation: "portrait" },
       { src: "/portfolio/art/photography/PXL_20251227_182403490.NIGHT~2.webp", orientation: "portrait" },
       { src: "/portfolio/art/photography/PXL_20251228_152904513.NIGHT.webp", orientation: "portrait" },
       { src: "/portfolio/art/photography/PXL_20251228_191132439.NIGHT.webp", orientation: "portrait" },
@@ -138,7 +145,11 @@ export const siteConfig = {
       { src: "/portfolio/art/photography/original_f34b489b-03c1-4a2e-918f-cd3922b615c8_PXL_20260129_085240839.webp", orientation: "portrait" },
     ] as Array<{ src: string; orientation: "portrait" | "landscape"; caption?: string }>,
 
+
     sketches: [
+      { src: "/portfolio/art/sketches/disappointement.webp", orientation: "landscape" },
+      { src: "/portfolio/art/sketches/monk.webp", orientation: "portrait" },
+      { src: "/portfolio/art/sketches/us_and_them.webp", orientation: "landscape" },
       { src: "/portfolio/art/sketches/20260620_143928886.webp", orientation: "portrait" },
       { src: "/portfolio/art/sketches/20260620_144512629.webp", orientation: "portrait" },
       { src: "/portfolio/art/sketches/20260620_144611363.webp", orientation: "landscape" },
