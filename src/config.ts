@@ -105,6 +105,7 @@ export const siteConfig = {
   // ─────────────────────────────────────────────────────────────────
   art: {
     photography: [
+      { src: "/portfolio/art/photography/people_on_sky.webp", orientation: "portrait" },
       { src: "/portfolio/art/photography/yellow.webp", orientation: "portrait" },
       { src: "/portfolio/art/photography/pink.webp", orientation: "portrait" },
       { src: "/portfolio/art/photography/hallway.webp", orientation: "portrait" },
