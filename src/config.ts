@@ -105,6 +105,9 @@ export const siteConfig = {
   // ─────────────────────────────────────────────────────────────────
   art: {
     photography: [
+      { src: "/portfolio/art/photography/1786816078266_5sr8o.jpg", orientation: "portrait", description: "When everyone leaves" },
+      { src: "/portfolio/art/photography/1786816054640_jwgp3.jpg", orientation: "portrait", description: "Why does she look so amazed?" },
+      { src: "/portfolio/art/photography/1786816017063_elizz.jpg", orientation: "portrait", description: "Flowers look more beautiful on plants anyway" },
       { src: "/portfolio/art/photography/1786344168554_h1yl3f.webp", orientation: "portrait", description: "The feet that run everything" },
       { src: "/portfolio/art/photography/1786344138534_fy1x1w.webp", orientation: "portrait", description: "Symmetry" },
       { src: "/portfolio/art/photography/1786344028752_mtlpvm.webp", orientation: "portrait", description: "Tomato" },
@@ -151,6 +154,8 @@ export const siteConfig = {
 
 
     sketches: [
+      { src: "/portfolio/art/sketches/1786815969035_c5s9zo.jpg", orientation: "portrait", description: "underprivileged" },
+      { src: "/portfolio/art/sketches/1786815628936_6mrbb.jpg", orientation: "portrait", description: "Some are never meant to be held back" },
       { src: "/portfolio/art/sketches/disappointement.webp", orientation: "landscape", description: "Disappointement" },
       { src: "/portfolio/art/sketches/monk.webp", orientation: "portrait", description: "The Courage" },
       { src: "/portfolio/art/sketches/us_and_them.webp", orientation: "landscape", description: "Us and Them" },
