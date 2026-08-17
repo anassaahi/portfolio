@@ -105,6 +105,7 @@ export const siteConfig = {
   // ─────────────────────────────────────────────────────────────────
   art: {
     photography: [
+      { src: "/portfolio/art/photography/1786992716365_ep2g3u.jpg", orientation: "landscape", description: "Sometimes you just need to close your eyes for a moment" },
       { src: "/portfolio/art/photography/1786816078266_5sr8o.jpg", orientation: "portrait", description: "When everyone leaves" },
       { src: "/portfolio/art/photography/1786816054640_jwgp3.jpg", orientation: "portrait", description: "Why does she look so amazed?" },
       { src: "/portfolio/art/photography/1786816017063_elizz.jpg", orientation: "portrait", description: "Flowers look more beautiful on plants anyway" },
@@ -154,6 +155,7 @@ export const siteConfig = {
 
 
     sketches: [
+      { src: "/portfolio/art/sketches/1786992351373_7csnvz.jpg", orientation: "portrait", description: "Native" },
       { src: "/portfolio/art/sketches/1786815969035_c5s9zo.jpg", orientation: "portrait", description: "underprivileged" },
       { src: "/portfolio/art/sketches/1786815628936_6mrbb.jpg", orientation: "portrait", description: "Some are never meant to be held back" },
       { src: "/portfolio/art/sketches/disappointement.webp", orientation: "landscape", description: "Disappointement" },
