@@ -105,6 +105,7 @@ export const siteConfig = {
   // ─────────────────────────────────────────────────────────────────
   art: {
     photography: [
+      { src: "/portfolio/art/photography/1787331982663_62unvh.jpg", orientation: "portrait", description: "Nature Prevails" },
       { src: "/portfolio/art/photography/1786992716365_ep2g3u.jpg", orientation: "landscape", description: "Sometimes you just need to close your eyes for a moment" },
       { src: "/portfolio/art/photography/1786816078266_5sr8o.jpg", orientation: "portrait", description: "When everyone leaves" },
       { src: "/portfolio/art/photography/1786816054640_jwgp3.jpg", orientation: "portrait", description: "Why does she look so amazed?" },
