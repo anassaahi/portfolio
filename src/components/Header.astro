@@ -21,7 +21,7 @@ const hasArt = siteConfig.art && (siteConfig.art.photography.length > 0 || siteC
       </li>
       {hasProjects && (
         <li>
-          <a href="#projects" class="nav-link font-mono text-xs tracking-widest uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300">
+          <a href="/portfolio/projects" class="nav-link font-mono text-xs tracking-widest uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300">
             Projects
           </a>
         </li>
@@ -66,7 +66,7 @@ const hasArt = siteConfig.art && (siteConfig.art.photography.length > 0 || siteC
   <div id="mobile-menu" class="hidden md:hidden border-t border-[var(--border)] bg-[var(--bg-primary)]">
     <ul class="px-8 py-6 space-y-5">
       <li><a href="#about" class="mobile-nav-link font-mono text-sm tracking-widest uppercase text-[var(--text-secondary)]">About</a></li>
-      {hasProjects && <li><a href="#projects" class="mobile-nav-link font-mono text-sm tracking-widest uppercase text-[var(--text-secondary)]">Projects</a></li>}
+      {hasProjects && <li><a href="/portfolio/projects" class="mobile-nav-link font-mono text-sm tracking-widest uppercase text-[var(--text-secondary)]">Projects</a></li>}
       {hasArt && <li><a href="/portfolio/art" class="mobile-nav-link font-mono text-sm tracking-widest uppercase text-[var(--text-secondary)]">Art & Life</a></li>}
       {hasExperience && <li><a href="#experience" class="mobile-nav-link font-mono text-sm tracking-widest uppercase text-[var(--text-secondary)]">Experience</a></li>}
       {hasEducation && <li><a href="#education" class="mobile-nav-link font-mono text-sm tracking-widest uppercase text-[var(--text-secondary)]">Education</a></li>}

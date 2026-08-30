@@ -1,6 +1,8 @@
 ---
 import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+const featuredProjects = siteConfig.projects.slice(0, 2);
+const totalProjects = siteConfig.projects.length;
 ---
 
 {hasProjects && (
@@ -22,9 +24,9 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
         </h2>
       </div>
 
-      <!-- Project cards -->
+      <!-- Project cards (only top 2) -->
       <div class="lg:col-span-8 space-y-6">
-        {siteConfig.projects.map((project, index) => {
+        {featuredProjects.map((project, index) => {
           const Tag = project.link ? "a" : "div";
           const linkProps = project.link
             ? { href: project.link, target: "_blank", rel: "noopener noreferrer" }
@@ -79,6 +81,30 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
             </div>
           );
         })}
+
+        <!-- Prominent View All Projects button -->
+        <div class="pt-10">
+          <a
+            href="/portfolio/projects"
+            class="group/btn view-all-btn relative flex items-center justify-between w-full px-8 md:px-10 py-6 md:py-8 border border-[var(--border-light)] bg-[var(--bg-primary)] text-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all duration-500"
+          >
+            <div class="flex flex-col gap-1.5">
+              <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] group-hover/btn:text-[var(--bg-surface)] transition-colors duration-500">
+                {totalProjects - 2} more projects
+              </span>
+              <span class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
+                View All Projects
+              </span>
+            </div>
+            <div class="w-12 h-12 md:w-14 md:h-14 border border-[var(--border-light)] flex items-center justify-center group-hover/btn:border-[var(--bg-primary)] transition-all duration-500 flex-shrink-0">
+              <svg class="w-5 h-5 md:w-6 md:h-6 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+            <!-- Animated bottom border -->
+            <div class="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--text-primary)] group-hover/btn:w-full transition-all duration-700"></div>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -88,5 +114,14 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
   .projects-outline {
     -webkit-text-stroke: 1.5px var(--text-primary);
     color: transparent;
+  }
+
+  .view-all-btn {
+    background-image: linear-gradient(
+      135deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      transparent 100%
+    );
   }
 </style>

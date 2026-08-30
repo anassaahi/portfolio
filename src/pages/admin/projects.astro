@@ -1,0 +1,472 @@
+---
+import "../../styles/global.css";
+import { siteConfig } from "../../config";
+const existingProjects = siteConfig.projects ?? [];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Projects Admin — Anas Faiz</title>
+  </head>
+  <body class="bg-[var(--bg-primary)] min-h-screen text-[var(--text-primary)] font-sans">
+    <div class="max-w-3xl mx-auto px-6 py-20">
+
+      <!-- Header -->
+      <div class="mb-12 border-b border-[var(--border)] pb-8">
+        <div class="flex items-center justify-between mb-4">
+          <h1 class="text-3xl font-bold tracking-tight">Projects Admin</h1>
+          <a href="/portfolio/admin" class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors border-b border-transparent hover:border-[var(--text-primary)] pb-0.5">
+            Art Admin →
+          </a>
+        </div>
+        <p class="font-mono text-xs text-[var(--text-secondary)] tracking-widest uppercase">Local Dashboard · Add, Edit & Reorder Projects</p>
+      </div>
+
+      <!-- Login View -->
+      <div id="login-view" class="space-y-6">
+        <div>
+          <label class="block font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-2">Password</label>
+          <input
+            type="password"
+            id="password-input"
+            class="w-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-primary)] px-4 py-3 focus:outline-none focus:border-[var(--text-primary)] transition-colors"
+            placeholder="Enter password..."
+          />
+        </div>
+        <button
+          id="login-btn"
+          class="w-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-mono text-xs tracking-widest uppercase py-4 hover:opacity-90 transition-opacity"
+        >
+          Login
+        </button>
+        <p id="login-error" class="text-red-500 font-mono text-xs hidden mt-4">Incorrect password.</p>
+      </div>
+
+      <!-- Main Dashboard View -->
+      <div id="dashboard-view" class="hidden">
+
+        <!-- Tab navigation -->
+        <div class="flex gap-0 border-b border-[var(--border)] mb-10">
+          <button id="tab-add" class="admin-tab admin-tab--active font-mono text-xs tracking-widest uppercase px-6 py-3 border-b-2 transition-all duration-300">
+            Add Project
+          </button>
+          <button id="tab-manage" class="admin-tab font-mono text-xs tracking-widest uppercase px-6 py-3 border-b-2 border-transparent text-[var(--text-muted)] transition-all duration-300">
+            Manage ({existingProjects.length})
+          </button>
+        </div>
+
+        <!-- ══ ADD PROJECT TAB ══ -->
+        <div id="panel-add">
+          <form id="project-form" class="space-y-8">
+
+            <!-- Rank -->
+            <div>
+              <label class="block font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-2">
+                Rank / Priority
+                <span class="text-[var(--text-secondary)] normal-case tracking-normal ml-2">— Lower number = shown first</span>
+              </label>
+              <input
+                type="number"
+                name="rank"
+                min="1"
+                value="1"
+                required
+                class="w-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-primary)] px-4 py-3 focus:outline-none focus:border-[var(--text-primary)] transition-colors"
+              />
+            </div>
+
+            <!-- Project Name -->
+            <div>
+              <label class="block font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-2">Project Name</label>
+              <input
+                type="text"
+                name="name"
+                required
+                class="w-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-primary)] px-4 py-3 focus:outline-none focus:border-[var(--text-primary)] transition-colors"
+                placeholder="E.g. Real-Time PPE Detection System"
+              />
+            </div>
+
+            <!-- Description -->
+            <div>
+              <label class="block font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-2">Description</label>
+              <textarea
+                name="description"
+                required
+                rows="4"
+                class="w-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-primary)] px-4 py-3 focus:outline-none focus:border-[var(--text-primary)] transition-colors resize-y"
+                placeholder="Detailed project description..."
+              ></textarea>
+            </div>
+
+            <!-- GitHub Link -->
+            <div>
+              <label class="block font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-2">GitHub Link</label>
+              <input
+                type="url"
+                name="github"
+                class="w-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-primary)] px-4 py-3 focus:outline-none focus:border-[var(--text-primary)] transition-colors"
+                placeholder="https://github.com/username/repo"
+              />
+            </div>
+
+            <!-- LinkedIn Link -->
+            <div>
+              <label class="block font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-2">LinkedIn Post (Optional)</label>
+              <input
+                type="url"
+                name="linkedin"
+                class="w-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-primary)] px-4 py-3 focus:outline-none focus:border-[var(--text-primary)] transition-colors"
+                placeholder="https://linkedin.com/in/..."
+              />
+            </div>
+
+            <!-- Tech Stack -->
+            <div>
+              <label class="block font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-2">
+                Tech Stack
+                <span class="text-[var(--text-secondary)] normal-case tracking-normal ml-2">— comma separated</span>
+              </label>
+              <input
+                type="text"
+                name="skills"
+                required
+                class="w-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-primary)] px-4 py-3 focus:outline-none focus:border-[var(--text-primary)] transition-colors"
+                placeholder="React, TypeScript, Node.js, PostgreSQL"
+              />
+              <div id="skills-preview" class="flex flex-wrap gap-2 mt-3 min-h-[32px]"></div>
+            </div>
+
+            <!-- Images -->
+            <div>
+              <label class="block font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-2">
+                Project Images
+                <span class="text-[var(--text-secondary)] normal-case tracking-normal ml-2">— Multiple allowed</span>
+              </label>
+              <input
+                type="file"
+                name="images"
+                accept="image/*"
+                multiple
+                class="w-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-primary)] px-4 py-3 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-xs file:font-mono file:bg-[var(--text-primary)] file:text-[var(--bg-primary)] hover:file:opacity-90"
+              />
+              <div id="image-preview" class="grid grid-cols-3 gap-3 mt-4"></div>
+            </div>
+
+            <!-- Divider -->
+            <div class="h-px bg-[var(--border)]"></div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-mono text-xs tracking-widest uppercase py-4 hover:opacity-90 transition-opacity"
+            >
+              Add Project to Portfolio
+            </button>
+          </form>
+
+          <div id="status-message" class="hidden font-mono text-xs p-4 border text-center mt-6"></div>
+        </div>
+
+        <!-- ══ MANAGE PROJECTS TAB ══ -->
+        <div id="panel-manage" class="hidden">
+          <p class="font-mono text-xs text-[var(--text-muted)] tracking-widest uppercase mb-6">
+            Drag to reorder · Click delete to remove
+          </p>
+          <div id="projects-list" class="space-y-3">
+            <!-- Populated by JS -->
+          </div>
+          <div id="manage-status" class="hidden font-mono text-xs p-4 border text-center mt-6"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script define:vars={{ existingProjects }}>
+      // ─── State ─────────────────────────────────────────────
+      let projects = JSON.parse(JSON.stringify(existingProjects));
+
+      // ─── DOM refs ──────────────────────────────────────────
+      const passwordInput = document.getElementById('password-input');
+      const loginBtn = document.getElementById('login-btn');
+      const loginError = document.getElementById('login-error');
+      const loginView = document.getElementById('login-view');
+      const dashboardView = document.getElementById('dashboard-view');
+
+      const tabAdd = document.getElementById('tab-add');
+      const tabManage = document.getElementById('tab-manage');
+      const panelAdd = document.getElementById('panel-add');
+      const panelManage = document.getElementById('panel-manage');
+
+      const projectForm = document.getElementById('project-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const statusMessage = document.getElementById('status-message');
+      const skillsInput = document.querySelector('input[name="skills"]');
+      const skillsPreview = document.getElementById('skills-preview');
+      const imagesInput = document.querySelector('input[name="images"]');
+      const imagePreview = document.getElementById('image-preview');
+      const projectsList = document.getElementById('projects-list');
+      const manageStatus = document.getElementById('manage-status');
+
+      // ─── Login ─────────────────────────────────────────────
+      loginBtn.addEventListener('click', () => {
+        if (passwordInput.value === 'admin123') {
+          loginView.classList.add('hidden');
+          dashboardView.classList.remove('hidden');
+          renderProjectsList();
+        } else {
+          loginError.classList.remove('hidden');
+        }
+      });
+
+      passwordInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') loginBtn.click();
+      });
+
+      // ─── Tabs ──────────────────────────────────────────────
+      function switchTab(active) {
+        const tabs = [tabAdd, tabManage];
+        const panels = [panelAdd, panelManage];
+        tabs.forEach((t, i) => {
+          if (t === active) {
+            t.classList.add('admin-tab--active');
+            t.classList.remove('text-[var(--text-muted)]', 'border-transparent');
+            panels[i].classList.remove('hidden');
+          } else {
+            t.classList.remove('admin-tab--active');
+            t.classList.add('text-[var(--text-muted)]', 'border-transparent');
+            panels[i].classList.add('hidden');
+          }
+        });
+      }
+
+      tabAdd.addEventListener('click', () => switchTab(tabAdd));
+      tabManage.addEventListener('click', () => {
+        switchTab(tabManage);
+        renderProjectsList();
+      });
+
+      // ─── Skills live preview ───────────────────────────────
+      skillsInput.addEventListener('input', () => {
+        const skills = skillsInput.value.split(',').map(s => s.trim()).filter(Boolean);
+        skillsPreview.innerHTML = skills.map(s =>
+          `<span class="font-mono text-xs px-2.5 py-1.5 border border-[var(--border)] text-[var(--text-muted)] tracking-wide">${s}</span>`
+        ).join('');
+      });
+
+      // ─── Image preview ────────────────────────────────────
+      imagesInput.addEventListener('change', () => {
+        imagePreview.innerHTML = '';
+        const files = imagesInput.files;
+        Array.from(files).forEach((file, i) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const div = document.createElement('div');
+            div.className = 'relative aspect-[4/3] bg-[var(--bg-surface)] border border-[var(--border)] overflow-hidden group';
+            div.innerHTML = `
+              <img src="${e.target.result}" class="w-full h-full object-cover" alt="Preview ${i + 1}" />
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="font-mono text-xs text-white tracking-widest">${file.name.substring(0, 20)}</span>
+              </div>
+            `;
+            imagePreview.appendChild(div);
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+
+      // ─── Helper: file → base64 ────────────────────────────
+      function toBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+        });
+      }
+
+      // ─── Form submit ──────────────────────────────────────
+      projectForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Adding Project...';
+        statusMessage.className = 'hidden font-mono text-xs p-4 border text-center mt-6';
+
+        try {
+          const formData = new FormData(projectForm);
+          const name = formData.get('name')?.toString().trim();
+          const description = formData.get('description')?.toString().trim();
+          const github = formData.get('github')?.toString().trim();
+          const linkedin = formData.get('linkedin')?.toString().trim();
+          const rank = parseInt(formData.get('rank')?.toString() || '1', 10);
+          const skills = formData.get('skills')?.toString().split(',').map(s => s.trim()).filter(Boolean) || [];
+
+          if (!name || !description) throw new Error('Name and description are required');
+
+          // Process images
+          const imageFiles = imagesInput.files;
+          const images = [];
+          for (let i = 0; i < imageFiles.length; i++) {
+            const base64 = await toBase64(imageFiles[i]);
+            images.push({
+              data: base64,
+              filename: imageFiles[i].name
+            });
+          }
+
+          const payload = {
+            name,
+            description,
+            link: github || '',
+            linkedin: linkedin || '',
+            skills,
+            images,
+            rank
+          };
+
+          const res = await fetch('/portfolio/api/project-upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            statusMessage.textContent = 'SUCCESS: Project added and config.ts updated!';
+            statusMessage.className = 'block font-mono text-xs p-4 border border-green-500/30 bg-green-500/10 text-green-400 text-center mt-6';
+            projectForm.reset();
+            skillsPreview.innerHTML = '';
+            imagePreview.innerHTML = '';
+            // Refresh projects list
+            projects = data.projects || projects;
+            tabManage.textContent = `Manage (${projects.length})`;
+          } else {
+            throw new Error(data.error || 'Upload failed');
+          }
+        } catch (error) {
+          statusMessage.textContent = 'ERROR: ' + error.message;
+          statusMessage.className = 'block font-mono text-xs p-4 border border-red-500/30 bg-red-500/10 text-red-400 text-center mt-6';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Add Project to Portfolio';
+        }
+      });
+
+      // ─── Render projects list (Manage tab) ─────────────────
+      function renderProjectsList() {
+        projectsList.innerHTML = '';
+        projects.forEach((project, index) => {
+          const card = document.createElement('div');
+          card.className = 'project-manage-card flex items-center gap-4 p-4 border border-[var(--border)] bg-[var(--bg-surface)] hover:border-[var(--border-light)] transition-all group';
+          card.draggable = true;
+          card.dataset.index = index.toString();
+
+          card.innerHTML = `
+            <div class="cursor-grab active:cursor-grabbing text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors flex-none">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <circle cx="5" cy="3" r="1.5"/><circle cx="11" cy="3" r="1.5"/>
+                <circle cx="5" cy="8" r="1.5"/><circle cx="11" cy="8" r="1.5"/>
+                <circle cx="5" cy="13" r="1.5"/><circle cx="11" cy="13" r="1.5"/>
+              </svg>
+            </div>
+            <span class="font-mono text-xs text-[var(--text-muted)] tracking-widest flex-none w-8">${String(index + 1).padStart(2, '0')}</span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-sm font-semibold text-[var(--text-primary)] truncate">${project.name}</h3>
+              <p class="text-xs text-[var(--text-muted)] truncate mt-0.5">${project.skills?.join(', ') || 'No skills listed'}</p>
+            </div>
+            ${project.link ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="flex-none text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>` : ''}
+            <button class="delete-project-btn flex-none w-8 h-8 border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)] hover:border-red-500/50 hover:text-red-400 hover:bg-red-500/10 transition-all" data-index="${index}" aria-label="Delete project">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          `;
+
+          // Drag events
+          card.addEventListener('dragstart', (e) => {
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', index.toString());
+            card.style.opacity = '0.4';
+          });
+          card.addEventListener('dragend', () => { card.style.opacity = '1'; });
+          card.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            card.classList.add('border-[var(--text-primary)]');
+          });
+          card.addEventListener('dragleave', () => {
+            card.classList.remove('border-[var(--text-primary)]');
+          });
+          card.addEventListener('drop', async (e) => {
+            e.preventDefault();
+            card.classList.remove('border-[var(--text-primary)]');
+            const fromIndex = parseInt(e.dataTransfer.getData('text/plain'), 10);
+            const toIndex = index;
+            if (fromIndex === toIndex) return;
+
+            // Reorder locally
+            const [moved] = projects.splice(fromIndex, 1);
+            projects.splice(toIndex, 0, moved);
+            renderProjectsList();
+
+            // Send reorder to backend
+            await saveProjectsOrder();
+          });
+
+          projectsList.appendChild(card);
+        });
+
+        // Delete buttons
+        document.querySelectorAll('.delete-project-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const idx = parseInt(btn.dataset.index, 10);
+            const confirmed = confirm(`Delete "${projects[idx].name}"?`);
+            if (!confirmed) return;
+
+            projects.splice(idx, 1);
+            renderProjectsList();
+            await saveProjectsOrder();
+            tabManage.textContent = `Manage (${projects.length})`;
+          });
+        });
+      }
+
+      // ─── Save reordered/deleted projects to backend ────────
+      async function saveProjectsOrder() {
+        manageStatus.className = 'hidden';
+        try {
+          const res = await fetch('/portfolio/api/project-reorder', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ projects }),
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            manageStatus.textContent = 'Config updated successfully.';
+            manageStatus.className = 'block font-mono text-xs p-4 border border-green-500/30 bg-green-500/10 text-green-400 text-center mt-6';
+          } else {
+            throw new Error(data.error || 'Save failed');
+          }
+        } catch (err) {
+          manageStatus.textContent = 'ERROR: ' + err.message;
+          manageStatus.className = 'block font-mono text-xs p-4 border border-red-500/30 bg-red-500/10 text-red-400 text-center mt-6';
+        }
+        setTimeout(() => { manageStatus.className = 'hidden'; }, 3000);
+      }
+    </script>
+
+    <style>
+      .admin-tab--active {
+        color: var(--text-primary);
+        border-bottom-color: var(--text-primary);
+      }
+    </style>
+  </body>
+</html>

@@ -24,11 +24,22 @@ export const siteConfig = {
   ],
   projects: [
     {
-      name: "Research Intro Generator (Refiner Agent)",
+      name: "RoboCup SSL High-Voltage Kicker Control System",
       description:
-        "Architected an autonomous multi-agent pipeline in Next.js that converts drafts into IEEE-formatted research papers, utilizing a custom Model Context Protocol (MCP), self-healing JSON parsers, and exponential-backoff logic to ensure robust Gemini API usage.",
-      link: "https://github.com/M-Ibraheem0/SPM-Project",
-      skills: ["Next.js 14", "TypeScript", "Gemini API", "MCP"],
+        "Engineered the embedded firmware for a high-voltage kicking mechanism used in autonomous RoboCup Small Size League (SSL) robots. The system governs the precise discharge of two 1800µF 220V capacitors into a custom solenoid actuator, allowing the robot to execute exact passes and powerful strikes based on real-time velocity targets.",
+      link: "https://github.com/anassaahi/Robocup-SSL-Embedded-",
+      skills: ["C++", "STM32 (STM32H7)", "FreeRTOS", "Hardware Abstraction Layer (HAL)", "SPI Communication", "Hardware PWM Timers", "ADC Polling", "Embedded Systems", "Physics-Based Modeling"],
+      images: ["/portfolio/projects/1788082672300_a4ch7r.jpg", "/portfolio/projects/1788082672302_2g7ze.jpg"] as string[],
+      linkedin: "https://lnkd.in/p/dMCgp5VW",
+    },
+    {
+      name: "IR Ball-Proximity Sensor System RoboCup SSL Robot",
+      description:
+        "Designed and configured the IR ball-detection sensor array for a RoboCup Small Size League (SSL) soccer robot, responsible for reliably detecting when the ball is within kicking range of the dribbler. The system uses 5 IR sensors mounted around the kicker mechanism, streaming live proximity readings over UART to the main controller for real-time decision-making during matches.",
+      link: "https://github.com/anassaahi/Robocup-SSL-Embedded-",
+      skills: ["Sensor Hardware", "Concurrency", "Visualization", "Robotics", "Embedded Systems", "RoboCup SSL"],
+      images: ["/portfolio/projects/1788082146691_czw84h.png"] as string[],
+      linkedin: "https://lnkd.in/p/dTsjxkkM",
     },
     {
       name: "Bicycle Marketplace Application",
@@ -36,6 +47,17 @@ export const siteConfig = {
         "Delivered a cross-platform marketplace app in Flutter with a responsive UI and optimized mobile UX for listing and discovery. Integrated serverless backend using Firebase for secure auth, user profiles, and multi-image uploads.",
       link: "https://github.com/anassaahi/Bicycle-Marketplace",
       skills: ["Flutter", "Dart", "Firebase", "Cloud Firestore"],
+      images: ["/portfolio/projects/Bicycle.png", "/portfolio/projects/bicycle1.png"] as string[],
+      linkedin: "https://www.linkedin.com/posts/anas-faiz-4289aa270_flutter-firebase-mobiledevelopment-activity-7350101769399513089-zxE5?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEJa2-ABc2_MU0r_IEW_zv6KQWT5A7rODb4",
+    },
+    {
+      name: "Research Intro Generator (Refiner Agent)",
+      description:
+        "Architected an autonomous multi-agent pipeline in Next.js that converts drafts into IEEE-formatted research papers, utilizing a custom Model Context Protocol (MCP), self-healing JSON parsers, and exponential-backoff logic to ensure robust Gemini API usage.",
+      link: "https://github.com/M-Ibraheem0/SPM-Project",
+      skills: ["Next.js 14", "TypeScript", "Gemini API", "MCP"],
+      images: [] as string[],
+      linkedin: "",
     },
     {
       name: "Custom SQL Database Engine",
@@ -43,6 +65,8 @@ export const siteConfig = {
         "Engineered a high-performance relational DBMS in C++ with B+ Tree indexing, 4KB paged storage and mmap-based I/O optimizations. Implemented ACID guarantees and concurrency control via WAL, 2PL, and MVCC.",
       link: "https://github.com/anassaahi/SQL-Database-engine",
       skills: ["C++", "React", "Node.js", "B+ Tree"],
+      images: [] as string[],
+      linkedin: "",
     },
     {
       name: "Real-Time PPE Compliance Detection System",
@@ -50,9 +74,23 @@ export const siteConfig = {
         "Designed and trained a real-time PPE detector using YOLOv8, achieving 77% mAP@50 on a multi-class safety dataset. Built an end-to-end training pipeline with CUDA-accelerated PyTorch training optimized for low-VRAM environments.",
       link: "https://github.com/anassaahi/Personal-ppe-data-training",
       skills: ["Python", "YOLOv8", "PyTorch", "CUDA", "OpenCV"],
+      images: [] as string[],
+      linkedin: "",
     }
   ],
   experience: [
+    {
+      company: "DUNE AI",
+      title: "Robotics Engineering Intern",
+      dateRange: "2025",
+      bullets: [
+        "Developed embedded firmware for RoboCup Small Size League (SSL) autonomous soccer robots, programming STM32H7 microcontrollers using C++ and FreeRTOS for real-time motor control and game-play logic.",
+        "Engineered a high-voltage kicker control system governing the precise discharge of dual 1800µF 220V capacitors into a custom solenoid actuator, enabling accurate passes and variable-power strikes based on real-time velocity targets.",
+        "Designed and calibrated a 5-sensor IR ball-proximity detection array around the kicker mechanism, streaming live UART telemetry to the main controller for sub-millisecond dribble-and-kick decision-making during matches.",
+        "Implemented SPI communication pipelines, hardware PWM timer configurations, and ADC polling routines for real-time sensor fusion across multiple peripheral subsystems.",
+        "Collaborated on physics-based modeling for kick trajectory prediction and contributed to the team's autonomous strategy layer for coordinated multi-robot gameplay.",
+      ],
+    },
     {
       company: "Project Basis",
       title: "Cybersecurity Analyst",

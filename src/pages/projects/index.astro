@@ -1,0 +1,350 @@
+---
+import { siteConfig } from "../../config";
+import "../../styles/global.css";
+
+const projects = siteConfig.projects ?? [];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={`Projects by ${siteConfig.name} — Software Development Portfolio`} />
+    <meta name="theme-color" content="#080808" />
+    <title>Projects — {siteConfig.name}</title>
+  </head>
+  <body>
+
+    <!-- ── Header ── -->
+    <header id="projects-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+      <nav class="mx-auto max-w-7xl px-8 py-5 flex items-center justify-between">
+        <a href="/portfolio/" class="font-mono text-sm tracking-widest uppercase text-[var(--text-primary)] opacity-70 hover:opacity-100 transition-opacity duration-300">
+          ← Back
+        </a>
+        <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">Projects</span>
+        <div class="flex gap-6">
+          <a href="/portfolio/#about" class="font-mono text-xs tracking-widest uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300">About</a>
+          <a href="/portfolio/art" class="font-mono text-xs tracking-widest uppercase text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300 hidden sm:inline">Art</a>
+        </div>
+      </nav>
+    </header>
+
+    <script>
+      const header = document.getElementById('projects-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          header?.classList.add('projects-header-scrolled');
+        } else {
+          header?.classList.remove('projects-header-scrolled');
+        }
+      });
+    </script>
+
+    <main class="pt-24">
+
+      <!-- ── Hero banner ── -->
+      <div class="border-b border-[var(--border)] px-8 sm:px-12 md:px-24 pb-20 pt-12 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] block mb-4">{siteConfig.name} — Engineering</span>
+            <h1 class="text-6xl sm:text-7xl md:text-8xl font-bold leading-none tracking-tight text-[var(--text-primary)]">
+              Selected<br/><span class="projects-page-outline">Work.</span>
+            </h1>
+          </div>
+          <p class="max-w-sm text-base text-[var(--text-secondary)] font-light leading-relaxed md:text-right">
+            Full-stack systems, AI pipelines, and<br/>
+            everything I've built along the way.
+          </p>
+        </div>
+        <div class="mt-10 flex items-center gap-4">
+          <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)]">{projects.length} Projects</span>
+          <div class="flex-1 h-px bg-[var(--border)]"></div>
+          <div class="flex items-center gap-3">
+            {siteConfig.social?.github && (
+              <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors duration-300 border-b border-transparent hover:border-[var(--text-primary)] pb-0.5">
+                GitHub ↗
+              </a>
+            )}
+            {siteConfig.social?.linkedin && (
+              <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors duration-300 border-b border-transparent hover:border-[var(--text-primary)] pb-0.5">
+                LinkedIn ↗
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Project entries ── -->
+      <div class="projects-list">
+        {projects.map((project, index) => (
+          <section class="project-entry border-b border-[var(--border)] py-16 md:py-24 px-8 sm:px-12 md:px-24">
+            <div class="max-w-7xl mx-auto">
+
+              <!-- Project number -->
+              <div class="flex items-center gap-4 mb-10">
+                <span class="font-mono text-xs tracking-widest text-[var(--text-muted)]">
+                  {String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+                </span>
+                <div class="flex-1 h-px bg-[var(--border)]"></div>
+              </div>
+
+              <!-- Main content: image left, text right -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+                <!-- Left: Image area -->
+                <div class="project-image-container relative group">
+                  {project.images && project.images.length > 0 ? (
+                    <!-- Real images carousel -->
+                    <div class="project-images-wrapper relative overflow-hidden aspect-[4/3] bg-[var(--bg-surface)]">
+                      {project.images.map((img: string, imgIdx: number) => (
+                        <img
+                          src={img}
+                          alt={`${project.name} screenshot ${imgIdx + 1}`}
+                          class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}`}
+                          data-slide-index={imgIdx}
+                          loading={index < 2 ? "eager" : "lazy"}
+                        />
+                      ))}
+                      {project.images.length > 1 && (
+                        <div class="absolute bottom-4 left-4 flex gap-2">
+                          {project.images.map((_: string, dotIdx: number) => (
+                            <button
+                              class={`w-2 h-2 rounded-full transition-all duration-300 ${dotIdx === 0 ? 'bg-[var(--text-primary)] w-6' : 'bg-[var(--text-muted)]'}`}
+                              data-dot-index={dotIdx}
+                              aria-label={`View image ${dotIdx + 1}`}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <!-- Placeholder with gradient + project icon -->
+                    <div class="project-placeholder aspect-[4/3] relative overflow-hidden bg-[var(--bg-surface)] border border-[var(--border)]">
+                      <div class={`absolute inset-0 project-gradient project-gradient--${index % 4}`}></div>
+                      <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <!-- Terminal-style icon -->
+                        <div class="w-16 h-16 border border-[var(--border-light)] flex items-center justify-center mb-4 group-hover:border-[var(--text-primary)] transition-colors duration-500">
+                          <svg class="w-7 h-7 text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z" />
+                          </svg>
+                        </div>
+                        <span class="font-mono text-xs tracking-widest text-[var(--text-muted)] uppercase">Preview Coming Soon</span>
+                      </div>
+                      <!-- Corner accents -->
+                      <div class="absolute top-3 left-3 w-4 h-4 border-t border-l border-[var(--border-light)] group-hover:border-[var(--text-muted)] transition-colors duration-500"></div>
+                      <div class="absolute top-3 right-3 w-4 h-4 border-t border-r border-[var(--border-light)] group-hover:border-[var(--text-muted)] transition-colors duration-500"></div>
+                      <div class="absolute bottom-3 left-3 w-4 h-4 border-b border-l border-[var(--border-light)] group-hover:border-[var(--text-muted)] transition-colors duration-500"></div>
+                      <div class="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-[var(--border-light)] group-hover:border-[var(--text-muted)] transition-colors duration-500"></div>
+                    </div>
+                  )}
+                </div>
+
+                <!-- Right: Project details -->
+                <div class="project-details flex flex-col justify-center">
+                  <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-primary)] leading-tight tracking-tight mb-6">
+                    {project.name}
+                  </h2>
+
+                  <p class="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-light mb-8">
+                    {project.description}
+                  </p>
+
+                  <!-- Skills / Tech stack -->
+                  {project.skills && project.skills.length > 0 && (
+                    <div class="mb-8">
+                      <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] block mb-4">Tech Stack</span>
+                      <div class="flex flex-wrap gap-2">
+                        {project.skills.map((skill: string) => (
+                          <span class="font-mono text-xs px-3 py-1.5 border border-[var(--border)] text-[var(--text-muted)] tracking-wide hover:border-[var(--border-light)] hover:text-[var(--text-secondary)] transition-all duration-300">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <!-- Links -->
+                  <div class="flex items-center gap-6">
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group/link inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-[var(--text-primary)] border border-[var(--border-light)] px-6 py-3 hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all duration-300"
+                      >
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                        <svg class="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17" />
+                        </svg>
+                      </a>
+                    )}
+                    {project.linkedin && (
+                      <a
+                        href={project.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors duration-300 border-b border-transparent hover:border-[var(--text-primary)] pb-0.5"
+                      >
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <!-- Footer -->
+      <footer class="border-t border-[var(--border)] px-8 sm:px-12 md:px-24 py-10 max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <a href="/portfolio/" class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors border-b border-transparent hover:border-[var(--text-primary)] pb-0.5">
+          ← Back to Portfolio
+        </a>
+        <p class="font-mono text-xs text-[var(--text-muted)] tracking-widest">
+          © {new Date().getFullYear()} {siteConfig.name}
+        </p>
+      </footer>
+    </main>
+
+    <!-- Image slideshow logic -->
+    <script>
+      document.querySelectorAll('.project-images-wrapper').forEach(wrapper => {
+        const slides = wrapper.querySelectorAll('img[data-slide-index]');
+        const dots = wrapper.querySelectorAll('button[data-dot-index]');
+        if (slides.length <= 1) return;
+
+        let current = 0;
+        let interval: ReturnType<typeof setInterval>;
+
+        function showSlide(idx: number) {
+          slides.forEach((s, i) => {
+            (s as HTMLElement).style.opacity = i === idx ? '1' : '0';
+          });
+          dots.forEach((d, i) => {
+            if (i === idx) {
+              d.classList.add('bg-[var(--text-primary)]', 'w-6');
+              d.classList.remove('bg-[var(--text-muted)]');
+            } else {
+              d.classList.remove('bg-[var(--text-primary)]', 'w-6');
+              d.classList.add('bg-[var(--text-muted)]');
+            }
+          });
+          current = idx;
+        }
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => {
+            showSlide(i);
+            clearInterval(interval);
+            interval = setInterval(() => showSlide((current + 1) % slides.length), 4000);
+          });
+        });
+
+        interval = setInterval(() => showSlide((current + 1) % slides.length), 4000);
+      });
+
+      // Scroll-reveal animation
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('project-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.project-entry').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "bdb69e25e2454d1f9f237bfb8c8feaad"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+  </body>
+</html>
+
+<style>
+  .projects-page-outline {
+    -webkit-text-stroke: 1.5px var(--text-primary);
+    color: transparent;
+  }
+
+  /* Header scroll state */
+  .projects-header-scrolled {
+    background-color: rgba(8, 8, 8, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Placeholder gradients ── */
+  .project-gradient {
+    opacity: 0.15;
+    transition: opacity 0.7s ease;
+  }
+  .project-gradient:hover {
+    opacity: 0.25;
+  }
+
+  .project-gradient--0 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  .project-gradient--1 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+  .project-gradient--2 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  }
+  .project-gradient--3 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  }
+
+  /* ── Scroll reveal animation ── */
+  .project-entry {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-entry.project-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger the animation for child elements */
+  .project-visible .project-image-container {
+    animation: fadeSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+
+  .project-visible .project-details {
+    animation: fadeSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  }
+
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hover lift on image container */
+  .project-image-container {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .project-image-container:hover {
+    transform: translateY(-4px);
+  }
+</style>
