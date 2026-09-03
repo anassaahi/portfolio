@@ -82,7 +82,7 @@ export const siteConfig = {
     {
       company: "DUNE AI",
       title: "Robotics Engineering Intern",
-      dateRange: "2025",
+      dateRange: "2026",
       bullets: [
         "Developed embedded firmware for RoboCup Small Size League (SSL) autonomous soccer robots, programming STM32H7 microcontrollers using C++ and FreeRTOS for real-time motor control and game-play logic.",
         "Engineered a high-voltage kicker control system governing the precise discharge of dual 1800µF 220V capacitors into a custom solenoid actuator, enabling accurate passes and variable-power strikes based on real-time velocity targets.",
