@@ -196,6 +196,7 @@ export const siteConfig = {
 
 
     sketches: [
+      { src: "/portfolio/art/sketches/1790839618412_icfu8o.jpg", orientation: "portrait", description: "Aid from the Padre" },
       { src: "/portfolio/art/sketches/1788628091697_zr0lur.jpg", orientation: "landscape", description: "The Loss" },
       { src: "/portfolio/art/sketches/1786992351373_7csnvz.jpg", orientation: "portrait", description: "Native" },
       { src: "/portfolio/art/sketches/1786815969035_c5s9zo.jpg", orientation: "portrait", description: "underprivileged" },

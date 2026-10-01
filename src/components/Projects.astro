@@ -14,10 +14,10 @@ const totalProjects = siteConfig.projects.length;
       <div class="mt-4 w-8 h-px bg-[var(--text-muted)]"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+    <div class="max-w-7xl mx-auto">
 
       <!-- Heading -->
-      <div class="lg:col-span-4">
+      <div class="mb-16">
         <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-none tracking-tight text-[var(--text-primary)]">
           Selected<br/>
           <span class="projects-outline">Work.</span>
@@ -25,62 +25,88 @@ const totalProjects = siteConfig.projects.length;
       </div>
 
       <!-- Project cards (only top 2) -->
-      <div class="lg:col-span-8 space-y-6">
-        {featuredProjects.map((project, index) => {
-          const Tag = project.link ? "a" : "div";
-          const linkProps = project.link
-            ? { href: project.link, target: "_blank", rel: "noopener noreferrer" }
-            : {};
+      <div>
+        {featuredProjects.map((project, index) => (
+          <article class="project-card border-b border-[var(--border)] py-16 md:py-24">
+            <div class="flex items-center gap-4 mb-10">
+              <span class="font-mono text-xs tracking-widest text-[var(--text-muted)]">
+                {String(index + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
+              </span>
+              <div class="flex-1 h-px bg-[var(--border)]"></div>
+            </div>
 
-          return (
-            <div class="group project-card relative">
-              <Tag
-                {...linkProps}
-                class={`block relative p-6 md:p-8 border border-[var(--border)] bg-[var(--bg-primary)] transition-all duration-400 ${
-                  project.link ? "hover:border-[var(--border-light)] hover:bg-[var(--bg-surface-2)]" : ""
-                }`}
-              >
-                <!-- Index + Arrow -->
-                <div class="flex justify-between items-start mb-6">
-                  <span class="font-mono text-xs text-[var(--text-muted)] tracking-widest">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  {project.link && (
-                    <div class="w-8 h-8 border border-[var(--border-light)] flex items-center justify-center group-hover:border-[var(--text-primary)] group-hover:bg-[var(--text-primary)] transition-all duration-300">
-                      <svg class="w-3.5 h-3.5 text-[var(--text-muted)] group-hover:text-[var(--bg-primary)] transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17" />
-                      </svg>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+                <!-- Left: Image area -->
+                <div class="project-image-container relative group">
+                  {project.images && project.images.length > 0 ? (
+                    <!-- Real images carousel -->
+                    <div class="project-images-wrapper relative overflow-hidden aspect-[4/3] bg-[var(--bg-surface)]">
+                      {project.images.map((img: string, imgIdx: number) => (
+                        <img
+                          src={img}
+                          alt={`${project.name} screenshot ${imgIdx + 1}`}
+                          class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}`}
+                          data-slide-index={imgIdx}
+                          loading="lazy" decoding="async"
+                        />
+                      ))}
+                      {project.images.length > 1 && (
+                        <div class="absolute bottom-4 left-4 flex gap-2">
+                          {project.images.map((_: string, dotIdx: number) => (
+                            <button
+                              class={`w-2 h-2 rounded-full transition-all duration-300 ${dotIdx === 0 ? 'bg-[var(--text-primary)] w-6' : 'bg-[var(--text-muted)]'}`}
+                              data-dot-index={dotIdx}
+                              aria-label={`View image ${dotIdx + 1}`}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <!-- Placeholder with gradient + project icon -->
+                    <div class="project-placeholder aspect-[4/3] relative overflow-hidden bg-[var(--bg-surface)] border border-[var(--border)]">
+                      <div class={`absolute inset-0 project-gradient project-gradient--${index % 4}`}></div>
+                      <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <!-- Terminal-style icon -->
+                        <div class="w-16 h-16 border border-[var(--border-light)] flex items-center justify-center mb-4 group-hover:border-[var(--text-primary)] transition-colors duration-500">
+                          <svg class="w-7 h-7 text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z" />
+                          </svg>
+                        </div>
+                        <span class="font-mono text-xs tracking-widest text-[var(--text-muted)] uppercase">Preview Coming Soon</span>
+                      </div>
+                      <!-- Corner accents -->
+                      <div class="absolute top-3 left-3 w-4 h-4 border-t border-l border-[var(--border-light)] group-hover:border-[var(--text-muted)] transition-colors duration-500"></div>
+                      <div class="absolute top-3 right-3 w-4 h-4 border-t border-r border-[var(--border-light)] group-hover:border-[var(--text-muted)] transition-colors duration-500"></div>
+                      <div class="absolute bottom-3 left-3 w-4 h-4 border-b border-l border-[var(--border-light)] group-hover:border-[var(--text-muted)] transition-colors duration-500"></div>
+                      <div class="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-[var(--border-light)] group-hover:border-[var(--text-muted)] transition-colors duration-500"></div>
                     </div>
                   )}
                 </div>
 
-                <!-- Title -->
-                <h3 class="text-xl sm:text-2xl font-semibold text-[var(--text-primary)] mb-3 leading-tight">
+              <div class="min-w-0 flex flex-col justify-center">
+                <h3 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-primary)] leading-tight tracking-tight mb-6">
                   {project.name}
                 </h3>
-
-                <!-- Description -->
-                <p class={`text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-light ${project.link ? "pr-0" : ""}`}>
+                <p class="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-light mb-8">
                   {project.description}
                 </p>
-
-                <!-- Skills -->
                 {project.skills && project.skills.length > 0 && (
-                  <div class="flex flex-wrap gap-2 mt-5">
-                    {project.skills.map((skill) => (
-                      <span class="font-mono text-xs sm:text-sm px-2.5 py-1.5 border border-[var(--border)] text-[var(--text-muted)] tracking-wide">
-                        {skill}
-                      </span>
-                    ))}
+                  <div>
+                    <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-muted)] block mb-4">Tech Stack</span>
+                    <div class="flex flex-wrap gap-2">
+                      {project.skills.map((skill) => (
+                        <span class="font-mono text-xs px-3 py-1.5 border border-[var(--border)] text-[var(--text-muted)] tracking-wide hover:border-[var(--border-light)] hover:text-[var(--text-secondary)] transition-all duration-300">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 )}
-
-                <!-- Bottom border reveal on hover -->
-                <div class="absolute bottom-0 left-0 w-0 h-px bg-[var(--text-primary)] group-hover:w-full transition-all duration-500"></div>
-              </Tag>
+              </div>
             </div>
-          );
-        })}
+          </article>
+        ))}
 
         <!-- Prominent View All Projects button -->
         <div class="pt-10">
@@ -110,6 +136,44 @@ const totalProjects = siteConfig.projects.length;
   </section>
 )}
 
+<script>
+      document.querySelectorAll('#projects .project-images-wrapper').forEach(wrapper => {
+        const slides = wrapper.querySelectorAll('img[data-slide-index]');
+        const dots = wrapper.querySelectorAll('button[data-dot-index]');
+        if (slides.length <= 1) return;
+
+        let current = 0;
+        let interval: ReturnType<typeof setInterval>;
+
+        function showSlide(idx: number) {
+          slides.forEach((s, i) => {
+            (s as HTMLElement).style.opacity = i === idx ? '1' : '0';
+          });
+          dots.forEach((d, i) => {
+            if (i === idx) {
+              d.classList.add('bg-[var(--text-primary)]', 'w-6');
+              d.classList.remove('bg-[var(--text-muted)]');
+            } else {
+              d.classList.remove('bg-[var(--text-primary)]', 'w-6');
+              d.classList.add('bg-[var(--text-muted)]');
+            }
+          });
+          current = idx;
+        }
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => {
+            showSlide(i);
+            clearInterval(interval);
+            interval = setInterval(() => showSlide((current + 1) % slides.length), 4000);
+          });
+        });
+
+        interval = setInterval(() => showSlide((current + 1) % slides.length), 4000);
+      });
+
+</script>
+
 <style>
   .projects-outline {
     -webkit-text-stroke: 1.5px var(--text-primary);
@@ -123,5 +187,34 @@ const totalProjects = siteConfig.projects.length;
       rgba(255, 255, 255, 0.02) 50%,
       transparent 100%
     );
+  }
+  /* ── Placeholder gradients ── */
+  .project-gradient {
+    opacity: 0.15;
+    transition: opacity 0.7s ease;
+  }
+  .project-gradient:hover {
+    opacity: 0.25;
+  }
+
+  .project-gradient--0 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  .project-gradient--1 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+  .project-gradient--2 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  }
+  .project-gradient--3 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  }
+
+  .project-image-container {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-image-container:hover {
+    transform: translateY(-4px);
   }
 </style>
